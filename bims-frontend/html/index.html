@@ -5,11 +5,57 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
-    <p>test</p>
-    <button type="button" class="btn">Base class</button>
+<body class>
+<!--    <p>test</p>-->
+<!--    <button type="button" class="btn">Base class</button>-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+    <script src="../js/main.js"></script>
+
+    <div>
+        <search>
+            <form>
+                <label>Filter Table</label>
+                <input type="search" id="filter-input">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Category
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" onclick=filter(0)>ID</a></li>
+                    <li><a class="dropdown-item" href="#" onclick=filter(1)>Title</a></li>
+                    <li><a class="dropdown-item" href="#" onclick=filter(2)>Author</a></li>
+                </ul>
+            </form>
+        </search>
+    </div>
+    <div>
+        <table class="table" class="table-light" id="books-table">
+            <thead>
+                <tr>
+                    <th scope="col">
+                       <img src="../assets/sort-icon.png" width="16" height="16"  onclick=sort(0)>
+                        ID
+                    </th>
+                    <th scope="col">
+                        <img src="../assets/sort-icon.png" width="16" height="16"  onclick=sort(1)>
+                        Title
+                    </th>
+                    <th scope="col">
+                        <img src="../assets/sort-icon.png" width="16" height="16"  onclick=sort(2)>
+                        Author
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <button type="button" class="btn btn-success" id="btn-add-book">Add Book</button>
+        <button type="button" class="btn btn-danger" id="btn-remove-book">Remove Book</button>
+        <button type="button" class="btn btn-primary" id="btn-export-table" onclick="exportTable()">Export Table</button>
+    </div>
 </body>
 </html>
