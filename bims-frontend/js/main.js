@@ -24,16 +24,33 @@ function getBooks() {
                 const rId = row.insertCell(0);
                 const rTitle = row.insertCell(1);
                 const rAuthor = row.insertCell(2);
+                const rDel = row.insertCell((3))
+                const rDelBtn = document.createElement("button");
+                rDelBtn.setAttribute("type", "button");
+                rDelBtn.setAttribute("class", "btn btn-danger")
+                rDelBtn.setAttribute("onclick", `deleteBook(${obj.id})`);
+                const rDelIcon = document.createElement("img");
+                rDelIcon.setAttribute("src", "../assets/delete-icon.png")
+                rDelIcon.setAttribute("width", "16")
+                rDelIcon.setAttribute("height", "16")
                 row.setAttribute("style", "visibility: visible");
                 rId.innerHTML=obj.id;
                 rTitle.innerHTML=obj.title;
                 rAuthor.innerHTML=obj.author;
+                rDelBtn.appendChild(rDelIcon);
+                rDel.appendChild(rDelBtn);
             }
         })
         .catch(error => {
             // Handle any errors here
             console.error(error); // Example: Logging the error to the console
         });
+}
+function clearBooksTable() {
+    let books = document.querySelector('#books-table').rows;
+    for(let i=1; books.length!=1; i) {
+        books[i].remove();
+    }
 }
 
 function sort(colNum) {
@@ -119,7 +136,46 @@ function exportTable() {
     document.body.removeChild(element);
 }
 
+function openAddBookForm() {
+    let element = document.querySelector('#add-book-form');
+    element.style.visibility="visible";
+}
+function closeAddBookForm() {
+    document.querySelector('#add-book-form').style.visibility="hidden";
+}
+
 function addBook() {
+    fetch("http://localhost:8080/bims/addBook", {
+        method: "POST",
+        body: JSON.stringify({
+            title: document.querySelector("#add-title-input").value,
+            author: document.querySelector("#add-author-input").value
+        }),
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(r => {
+        console.log(r);
+        clearBooksTable();
+        getBooks();
+        closeAddBookForm();
+    });
+
+
+}
+
+function deleteBook(bookId) {
+    fetch(`http://localhost:8080/bims/deleteBook/${bookId}`, {
+        method: "DELETE",
+        headers: {
+            "Content-type": "application/json; charset=UTF-8"
+        }
+    }).then(r => {
+        console.log(r);
+        clearBooksTable();
+        getBooks();
+    });
+
 
 }
 
