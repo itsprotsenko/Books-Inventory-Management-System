@@ -119,5 +119,8 @@ function exportTable() {
     document.body.removeChild(element);
 }
 
+function addBook() {
+
+}
 
 getBooks();

@@ -57,5 +57,19 @@
         <button type="button" class="btn btn-danger" id="btn-remove-book">Remove Book</button>
         <button type="button" class="btn btn-primary" id="btn-export-table" onclick="exportTable()">Export Table</button>
     </div>
+    <div class="form-popup" id="add-book">
+        <form action="" class="form-container">
+            <h1>Add Book</h1>
+
+            <label for="add-title-input"><b>Title</b></label>
+            <input type="text" placeholder="Enter Title" name="add-title-input" id="add-title-input"required>
+
+            <label for="add-author-input"><b>Author</b></label>
+            <input type="text" placeholder="Enter Author" name="add-auhtor-input" id="add-author-input" required>
+
+            <button type="submit" class="btn">Add</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
 </body>
 </html>
